@@ -125,6 +125,20 @@ Before marking work complete:
 3. list verification performed
 4. list remaining risks if any
 
+## Git Workflow Guardrails
+
+For team delivery and contests, follow these rules:
+
+- Work only on `feat/*` or `fix/*` branches.
+- Never push directly to `main`; use MR only.
+- Commit messages must follow Conventional Commits:
+  `type(scope): subject`
+- Do not push `WIP` commits to remote.
+- Before push, run available checks in this order:
+  lint + unit, then integration, then smoke.
+- Auto-push/auto-commit is allowed only when all required checks pass and
+  `FINAL_APPROVE=1` is set.
+
 ## Output Style
 
 Be concise.

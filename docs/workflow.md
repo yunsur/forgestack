@@ -127,6 +127,12 @@ Forge 从 GStack 和 Superpowers 中各选取 4 个技能：
 |------|------|---------|
 | `brainstorming` | 发散思维 | 仅在 proposal 阶段，不可在 tasks/implementation 阶段使用 |
 
+**内置团队技能：**
+
+- `team-workflow`（路径：`config/claude/skills/team-workflow`）
+- 用于比赛/冲刺场景下的分支与提交约束（`feat/*`、Conventional Commits、`FINAL_APPROVE` 门禁）
+- 执行 `forge init skills` 后会链接到 `~/.claude/skills/team-workflow`
+
 ---
 
 ## 工作流程

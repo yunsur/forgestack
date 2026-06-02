@@ -279,6 +279,16 @@ forge skills install obra/superpowers
 # skills 自动链接到 ~/.claude/skills/，Claude Code 和 Codex 均可加载
 ```
 
+内置技能（仓库自带）通过 `forge init skills` 部署：
+
+```bash
+# 部署内置 skill 到 ~/.claude/skills/
+forge init skills
+
+# 比赛协作流程技能（分支/提交/final-approve 约束）
+~/.claude/skills/team-workflow
+```
+
 ## MCP 配置
 
 MCP Server 配置在 `config/claude/mcp.json`，通过 `forge init mcp` 合并到 `~/.claude/mcp.json`。

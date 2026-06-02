@@ -148,6 +148,7 @@ _init_config() {
 
 _init_skills() {
     local downloads="$ROOT_DIR/download"
+    local builtin_skills="$ROOT_DIR/config/claude/skills"
 
     _log "init" "部署 Skills"
 
@@ -159,12 +160,29 @@ _init_skills() {
 
     mkdir -p "$AI_HOME/skills" "$HOME/.claude/skills"
 
+    # 仓库内置 skills（config/claude/skills）
+    local builtin_count=0
+    if [ -d "$builtin_skills" ]; then
+        for d in "$builtin_skills"/*/; do
+            [ -d "$d" ] || continue
+            local sname
+            sname=$(basename "$d")
+            rm -rf "$AI_HOME/skills/$sname"
+            cp -r "$d" "$AI_HOME/skills/$sname"
+            ln -sfn "$AI_HOME/skills/$sname" "$HOME/.claude/skills/$sname"
+            ((builtin_count++)) || true
+        done
+        [ $builtin_count -gt 0 ] && ok "内置 skills: ${builtin_count} 个"
+    fi
+
     # 独立 skills（download/skills/，非 superpowers/gstack）
     local skill_count=0
     if [ -d "$downloads/skills" ]; then
         for d in "$downloads/skills"/*/; do
             [ -d "$d" ] || continue
-            local sname=$(basename "$d")
+            local sname
+            sname=$(basename "$d")
+            rm -rf "$AI_HOME/skills/$sname"
             cp -r "$d" "$AI_HOME/skills/$sname"
             ln -sfn "$AI_HOME/skills/$sname" "$HOME/.claude/skills/$sname"
             ((skill_count++)) || true
